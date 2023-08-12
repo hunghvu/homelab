@@ -1,0 +1,64 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd96:70a8:7a73::/48'
+	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+	option bridge_empty '1'
+
+config interface 'lan'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+	option ipaddr '10.10.10.1'
+	option device 'br-lan.1'
+
+config interface 'wan'
+	option proto 'pppoe'
+	option username 
+	option password 
+	option ipv6 'auto'
+	option device 'br-lan.201'
+	option peerdns '0'
+	list dns '1.1.1.2'
+	list dns '1.0.0.2'
+	list dns '2606:4700:4700::1112'
+	list dns '2606:4700:4700::1002'
+	list dns '9.9.9.9'
+	list dns '149.112.112.112'
+	list dns '2620:fe::fe'
+	list dns '2620:fe::9'
+	list dns_search 'security.cloudflare-dns.com'
+	list dns_search 'dns.quad9.net'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '1'
+	list ports 'eth0'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '201'
+	list ports 'eth0:t'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '100'
+	list ports 'eth0:t'
+
+config interface 'iot'
+	option proto 'static'
+	option device 'br-lan.100'
+	option ipaddr '10.10.100.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
