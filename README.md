@@ -1,20 +1,24 @@
 # Configuration for homelab
 
 ## OpenWRT
-These are the main focus for now. It's unlikely other files will be manually modified.
 
-- adblock
-- adblock-opkg
-- attendedsysupgrade
+There are 2 packages:
+
+- `x86` is for an edge firewall.
+- `arm` is for a dumb access point.
+
+Only the following files are in the repository:
+
 - dhcp
 - firewall
-- https-dns-proxy
-- https-dns-proxy-opkg
+- firewall-opkg
 - network
-- sqm
-- sqm-opkg
-- system
+- wireless
 
-`network`, `dhcp`, and `firewall` are frequently modified. In `network`, PPPoE username and password must be filled in. **The full backup is stored locally, so this git version is only used to keep track of changes and for IaaC reference if needed.**
+These are frequently modified files, so they are kept track for IaaC reference purpose. Sensitive information such as username, ssid, password, key are ommited.
 
-Virtualization reference: https://hungvu.tech/virtualize-openwrt-firewall-in-harvester-hci-cluster
+**Note: The full backup is stored locally, so the repository is more for change management.**
+
+Good resource:
+
+- [OpenWRT guide for a dumb access point.](https://openwrt.org/docs/guide-user/network/wifi/dumbap)

@@ -1,0 +1,146 @@
+
+config dnsmasq
+	option domainneeded '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '1'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option confdir '/tmp/dnsmasq.d'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+	option loglevel '4'
+
+config dhcp 'iot'
+	option interface 'iot'
+	option leasetime '12h'
+	option start '200'
+	option limit '50'
+	option force '1'
+	option ra 'server'
+	option dhcpv6 'server'
+	list ra_flags 'managed-config'
+	list ra_flags 'other-config'
+
+config host
+	option name 'ubuntu-dell'
+	option dns '1'
+	option mac '74:E6:E2:E0:CC:2F'
+	option ip '10.10.10.2'
+
+config host
+	option name 'ubuntu-hp'
+	option dns '1'
+	option mac 'D8:97:BA:4E:E5:CC'
+	option ip '10.10.10.3'
+
+config dhcp 'private'
+	option interface 'private'
+	option leasetime '12h'
+	option start '200'
+	option limit '50'
+	option force '1'
+	option ra 'server'
+	option dhcpv6 'server'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
+
+config host
+	option name 'kauf-bulb-ed83e9'
+	option ip '10.10.100.214'
+	option mac 'A8:48:FA:ED:83:E9'
+
+config host
+	option name 'KL135'
+	option ip '10.10.100.215'
+	option mac 'E8:48:B8:D7:50:2E'
+
+config host
+	option name 'kauf-plug-7aab74'
+	option ip '10.10.100.241'
+	option mac '70:03:9F:7A:AB:74'
+
+config host
+	option name 'kauf-plug-7aabae'
+	option ip '10.10.100.244'
+	option mac '70:03:9F:7A:AB:AE'
+
+config host
+	option name 'TL-SX3008F'
+	option dns '1'
+	option mac '1C:61:B4:7C:F6:0F'
+	option ip '10.10.10.10'
+
+config dhcp 'lab_mngt'
+	option interface 'lab_mngt'
+	option start '100'
+	option limit '50'
+	option leasetime '12h'
+	option force '1'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
+	option ra 'server'
+	option dhcpv6 'server'
+
+config dhcp 'lab_test'
+	option interface 'lab_test'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option force '1'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
+	option ra 'server'
+	option dhcpv6 'server'
+
+config dhcp 'lab_prod'
+	option interface 'lab_prod'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option force '1'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
+	option ra 'server'
+	option dhcpv6 'server'
+
+config host
+	option name 'homeassistant'
+	option ip '10.10.42.246'
+	option mac '04:0E:3C:1F:B5:8E'
+
+config host
+	option name 'xcp-ng-fqsvsude9500'
+	option ip '10.10.40.222'
+	option mac 'B0:5C:DA:2A:19:AF'
+
+config dhcp 'infrastructure'
+	option interface 'infrastructure'
+	option start '2'
+	option limit '50'
+	option leasetime '12h'
+	option force '1'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
+	option ra 'server'
+	option dhcpv6 'server'
+
+config host
+	option name 'xcp-ng-vvbgeoco6500lenovo'
+	option ip '10.10.40.121'
+	option mac '00:23:24:BB:09:CA'
+
+config host
+	option name 'xcp-ng-kqmjbtgh6500hp'
+	option ip '10.10.40.116'
+	option mac 'EC:B1:D7:72:2A:3C'
+
+config host
+	option name 'ubuntu-hpt530-top'
+	option ip '10.10.40.108'
+	option mac '04:0E:3C:1E:24:46'
+

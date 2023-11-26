@@ -1,0 +1,107 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd96:70a8:7a73::/48'
+	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+	option bridge_empty '1'
+
+config interface 'wan'
+	option proto 'pppoe'
+	option password
+	option ipv6 'auto'
+	option device 'br-lan.201'
+	option username
+	option peerdns '0'
+	list dns '10.10.10.2'
+	list dns '10.10.10.3'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '10'
+	list ports 'eth0:u*'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '201'
+	list ports 'eth0:t'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '100'
+	list ports 'eth0:t'
+
+config interface 'iot'
+	option proto 'static'
+	option device 'br-lan.100'
+	option ipaddr '10.10.100.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+config interface 'wan6'
+	option proto '6rd'
+	option peeraddr '205.171.2.64'
+	option ip6prefix '2602::'
+	option ip6prefixlen '24'
+	list dns '2620:fe::fe'
+	list dns '2620:fe::9'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '50'
+	list ports 'eth0:t'
+
+config interface 'private'
+	option proto 'static'
+	option device 'br-lan.50'
+	option ipaddr '10.10.50.1'
+	option netmask '255.255.255.0'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '40'
+	list ports 'eth0:t'
+
+config interface 'lab_mngt'
+	option proto 'static'
+	option device 'br-lan.40'
+	option ipaddr '10.10.40.1'
+	option netmask '255.255.255.0'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '41'
+	list ports 'eth0:t'
+
+config interface 'lab_test'
+	option proto 'static'
+	option device 'br-lan.41'
+	option ipaddr '10.10.41.1'
+	option netmask '255.255.255.0'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '42'
+	list ports 'eth0:t'
+
+config interface 'lab_prod'
+	option proto 'static'
+	option device 'br-lan.42'
+	option ipaddr '10.10.42.1'
+	option netmask '255.255.255.0'
+
+config interface 'infrastructure'
+	option proto 'static'
+	option device 'br-lan.10'
+	option ipaddr '10.10.10.1'
+	option netmask '255.255.255.0'
+

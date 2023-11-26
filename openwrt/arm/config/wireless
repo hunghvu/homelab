@@ -1,0 +1,46 @@
+
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option path 'platform/18000000.wifi'
+	option channel 'auto'
+	option band '2g'
+	option htmode 'HE20'
+	option cell_density '0'
+	option country 'US'
+
+config wifi-iface 'default_radio0'
+	option device 'radio0'
+	option network 'iot'
+	option mode 'ap'
+	option ssid 
+	option encryption 'sae-mixed'
+	option key 
+	option wpa_disable_eapol_key_retries '1'
+
+config wifi-device 'radio1'
+	option type 'mac80211'
+	option path 'platform/18000000.wifi+1'
+	option channel '157'
+	option band '5g'
+	option htmode 'HE80'
+	option country 'US'
+	option cell_density '0'
+
+config wifi-iface 'default_radio1'
+	option device 'radio1'
+	option network 'private'
+	option mode 'ap'
+	option ssid 
+	option encryption 'sae'
+	option key 
+	option wpa_disable_eapol_key_retries '1'
+
+config wifi-iface 'wifinet2'
+	option device 'radio0'
+	option mode 'ap'
+	option ssid 
+	option encryption 'sae'
+	option key 
+	option wpa_disable_eapol_key_retries '1'
+	option network 'private'
+
