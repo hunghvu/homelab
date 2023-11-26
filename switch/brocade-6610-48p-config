@@ -1,0 +1,134 @@
+!
+Startup-config data location is flash memory
+!
+Startup configuration:
+!
+ver 08.0.30uT7f3
+!
+stack unit 1
+  module 1 icx6610-48p-poe-port-management-module
+  module 2 icx6610-qsfp-10-port-160g-module
+  module 3 icx6610-8-port-10g-dual-mode-module
+stack disable
+!
+!
+!
+!
+vlan 1 name DEFAULT-VLAN by port
+!
+vlan 10 name INFRASTRUCTURE by port
+ tagged ethe 1/1/38 ethe 1/1/46
+ untagged ethe 1/1/1 ethe 1/1/3 ethe 1/1/5 ethe 1/1/7 ethe 1/1/9 ethe 1/1/11 eth e 1/1/13 to 1/1/33 ethe 1/1/35 ethe 1/1/37 ethe 1/1/39 to 1/1/45 ethe 1/1/47 eth e 1/2/1 to 1/2/10 ethe 1/3/1 to 1/3/8
+ router-interface ve 1
+!
+vlan 40 name LAB_MNGT by port
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+ untagged ethe 1/1/2 ethe 1/1/4 ethe 1/1/6 ethe 1/1/8
+!
+vlan 41 name LAB_TEST by port
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+!
+vlan 42 name LAB_PROD by port
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+!
+vlan 50 name PRIVATE by port
+ tagged ethe 1/1/38 ethe 1/1/46
+!
+vlan 100 name IOT by port
+ tagged ethe 1/1/38 ethe 1/1/46
+!
+vlan 201 name WAN by port
+ tagged ethe 1/1/38 ethe 1/1/48
+!
+!
+!
+!
+!
+aaa authentication web-server default local
+aaa authentication login default local
+enable aaa console
+hostname brocade-6610-48p-1
+ip dhcp-client disable
+ip dns server-address 10.10.10.2 10.10.10.3
+ip route 0.0.0.0/0 10.10.10.1
+!
+no telnet server
+username root password .....
+!
+!
+clock summer-time
+clock timezone gmt GMT-07
+!
+!
+ntp
+ disable serve
+ server 216.239.35.0
+ server 216.239.35.4
+!
+!
+web-management https
+!
+!
+!
+!
+!
+!
+!
+interface ethernet 1/1/10
+ dual-mode  40
+!
+interface ethernet 1/1/12
+ dual-mode  40
+!
+interface ethernet 1/1/34
+ dual-mode  40
+!
+interface ethernet 1/1/36
+ dual-mode  40
+!
+interface ethernet 1/1/38
+ dual-mode  10
+!
+interface ethernet 1/1/44
+ inline power
+!
+interface ethernet 1/1/46
+ dual-mode  10
+ inline power
+!
+interface ethernet 1/3/1
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/2
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/3
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/4
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/5
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/6
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/7
+ speed-duplex 10G-full
+!
+interface ethernet 1/3/8
+ speed-duplex 10G-full
+!
+interface ve 1
+ ip address 10.10.10.10 255.255.255.0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+end
