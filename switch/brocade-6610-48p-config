@@ -23,13 +23,14 @@ vlan 10 name INFRASTRUCTURE by port
 !
 vlan 40 name LAB_MNGT by port
  tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
- untagged ethe 1/1/2 ethe 1/1/4 ethe 1/1/6 ethe 1/1/8
+ untagged ethe 1/1/2
 !
 vlan 41 name LAB_TEST by port
  tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
 !
 vlan 42 name LAB_PROD by port
  tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+ untagged ethe 1/1/4 ethe 1/1/6 ethe 1/1/8
 !
 vlan 50 name PRIVATE by port
  tagged ethe 1/1/38 ethe 1/1/46
