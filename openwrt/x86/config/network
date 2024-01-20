@@ -6,20 +6,19 @@ config interface 'loopback'
 	option netmask '255.0.0.0'
 
 config globals 'globals'
-	option ula_prefix 'fd96:70a8:7a73::/48'
 	option packet_steering '1'
 
 config device
 	option name 'br-lan'
 	option type 'bridge'
-	list ports 'eth0'
 	option bridge_empty '1'
+	list ports 'eth0'
 
 config interface 'wan'
 	option proto 'pppoe'
 	option password
 	option ipv6 'auto'
-	option device 'br-lan.201'
+	option device 'br-wan.201'
 	option username
 	option peerdns '0'
 	list dns '10.10.10.2'
@@ -32,11 +31,6 @@ config bridge-vlan
 
 config bridge-vlan
 	option device 'br-lan'
-	option vlan '201'
-	list ports 'eth0:t'
-
-config bridge-vlan
-	option device 'br-lan'
 	option vlan '100'
 	list ports 'eth0:t'
 
@@ -45,7 +39,7 @@ config interface 'iot'
 	option device 'br-lan.100'
 	option ipaddr '10.10.100.1'
 	option netmask '255.255.255.0'
-	option ip6assign '60'
+	option ip6assign '64'
 
 config interface 'wan6'
 	option proto '6rd'
@@ -65,6 +59,7 @@ config interface 'private'
 	option device 'br-lan.50'
 	option ipaddr '10.10.50.1'
 	option netmask '255.255.255.0'
+	option ip6assign '64'
 
 config bridge-vlan
 	option device 'br-lan'
@@ -76,6 +71,7 @@ config interface 'lab_mngt'
 	option device 'br-lan.40'
 	option ipaddr '10.10.40.1'
 	option netmask '255.255.255.0'
+	option ip6assign '64'
 
 config bridge-vlan
 	option device 'br-lan'
@@ -87,6 +83,7 @@ config interface 'lab_test'
 	option device 'br-lan.41'
 	option ipaddr '10.10.41.1'
 	option netmask '255.255.255.0'
+	option ip6assign '64'
 
 config bridge-vlan
 	option device 'br-lan'
@@ -98,10 +95,22 @@ config interface 'lab_prod'
 	option device 'br-lan.42'
 	option ipaddr '10.10.42.1'
 	option netmask '255.255.255.0'
+	option ip6assign '64'
 
 config interface 'infrastructure'
 	option proto 'static'
 	option device 'br-lan.10'
 	option ipaddr '10.10.10.1'
 	option netmask '255.255.255.0'
+	option ip6assign '64'
 
+config device
+	option type 'bridge'
+	option name 'br-wan'
+	list ports 'eth1'
+	option bridge_empty '1'
+
+config bridge-vlan
+	option device 'br-wan'
+	option vlan '201'
+	list ports 'eth1:t'

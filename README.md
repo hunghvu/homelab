@@ -22,3 +22,4 @@ These are frequently modified files, so they are kept track for IaaC reference p
 Good resource:
 
 - [OpenWRT guide for a dumb access point.](https://openwrt.org/docs/guide-user/network/wifi/dumbap)
+- Using a USB to ethernet adapter requires `kmod-usb-core`, `kmod-usb3`, `kmod-usb-net-rtl8152`. Other package like USB XHCI was bundled with OpenWRT image.
