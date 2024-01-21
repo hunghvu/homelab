@@ -144,3 +144,12 @@ config host
 	option ip '10.10.40.108'
 	option mac '04:0E:3C:1E:24:46'
 
+config host
+	option name 'ubuntu-hpt530-3rd'
+	option ip '10.10.42.158'
+	option mac '04:0E:3C:1E:24:AE'
+
+config host
+	option name 'truenas'
+	option ip '10.10.42.238'
+	option mac '30:52:5A:00:21:CF'
