@@ -1,0 +1,16 @@
+{
+  "model": {
+    "id": "google-panther",
+    "name": "GOOGLE Panther"
+  },
+  "network": {
+    "lan": {
+      "device": "eth0",
+      "protocol": "static"
+    },
+    "wan": {
+      "device": "eth1",
+      "protocol": "pppoe"
+    }
+  }
+}
