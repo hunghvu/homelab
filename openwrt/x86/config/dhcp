@@ -43,15 +43,50 @@ config host
 	option mac 'D8:97:BA:4E:E5:CC'
 	option ip '10.10.10.3'
 
-config dhcp 'private'
-	option interface 'private'
-	option leasetime '12h'
-	option start '200'
-	option limit '50'
-	option force '1'
-	option ra 'server'
-	option dhcpv6 'server'
-	list dhcp_option '6,10.10.10.2,10.10.10.3'
+config host
+	option name 'zyxel-nwax50pro'
+	list mac 'F4:4D:5C:5D:42:8D'
+	option ip '10.10.10.4'
+
+config host
+	option name 'tl-sx3008f'
+	list mac '1C:61:B4:7C:F6:0F'
+	option ip '10.10.10.11'
+
+config host
+	option name 'ubuntu-hpt530-top'
+	option ip '10.10.40.108'
+	option mac '04:0E:3C:1E:24:46'
+
+config host
+	option name 'xcp-ng-kqmjbtgh6500hp'
+	option ip '10.10.40.116'
+	option mac 'EC:B1:D7:72:2A:3C'
+
+config host
+	option name 'xcp-ng-vvbgeoco6500lenovo'
+	option ip '10.10.40.121'
+	option mac '00:23:24:BB:09:CA'
+
+config host
+	option name 'xcp-ng-fqsvsude9500'
+	option ip '10.10.40.222'
+	option mac 'B0:5C:DA:2A:19:AF'
+
+config host
+	option name 'ubuntu-hpt530-3rd'
+	option ip '10.10.42.158'
+	option mac '04:0E:3C:1E:24:AE'
+
+config host
+	option name 'truenas'
+	option ip '10.10.42.238'
+	option mac '30:52:5A:00:21:CF'
+
+config host
+	option name 'homeassistant'
+	option ip '10.10.42.246'
+	option mac '04:0E:3C:1F:B5:8E'
 
 config host
 	option name 'kauf-bulb-ed83e9'
@@ -73,11 +108,15 @@ config host
 	option ip '10.10.100.244'
 	option mac '70:03:9F:7A:AB:AE'
 
-config host
-	option name 'TL-SX3008F'
-	option dns '1'
-	option mac '1C:61:B4:7C:F6:0F'
-	option ip '10.10.10.10'
+config dhcp 'private'
+	option interface 'private'
+	option leasetime '12h'
+	option start '200'
+	option limit '50'
+	option force '1'
+	option ra 'server'
+	option dhcpv6 'server'
+	list dhcp_option '6,10.10.10.2,10.10.10.3'
 
 config dhcp 'lab_mngt'
 	option interface 'lab_mngt'
@@ -109,47 +148,12 @@ config dhcp 'lab_prod'
 	option ra 'server'
 	option dhcpv6 'server'
 
-config host
-	option name 'homeassistant'
-	option ip '10.10.42.246'
-	option mac '04:0E:3C:1F:B5:8E'
-
-config host
-	option name 'xcp-ng-fqsvsude9500'
-	option ip '10.10.40.222'
-	option mac 'B0:5C:DA:2A:19:AF'
-
 config dhcp 'infrastructure'
 	option interface 'infrastructure'
-	option start '2'
+	option start '20'
 	option limit '50'
 	option leasetime '12h'
 	option force '1'
 	list dhcp_option '6,10.10.10.2,10.10.10.3'
 	option ra 'server'
 	option dhcpv6 'server'
-
-config host
-	option name 'xcp-ng-vvbgeoco6500lenovo'
-	option ip '10.10.40.121'
-	option mac '00:23:24:BB:09:CA'
-
-config host
-	option name 'xcp-ng-kqmjbtgh6500hp'
-	option ip '10.10.40.116'
-	option mac 'EC:B1:D7:72:2A:3C'
-
-config host
-	option name 'ubuntu-hpt530-top'
-	option ip '10.10.40.108'
-	option mac '04:0E:3C:1E:24:46'
-
-config host
-	option name 'ubuntu-hpt530-3rd'
-	option ip '10.10.42.158'
-	option mac '04:0E:3C:1E:24:AE'
-
-config host
-	option name 'truenas'
-	option ip '10.10.42.238'
-	option mac '30:52:5A:00:21:CF'
