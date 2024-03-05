@@ -18,18 +18,18 @@ vlan 1 name DEFAULT-VLAN by port
 !
 vlan 10 name INFRASTRUCTURE by port
  tagged ethe 1/1/38 ethe 1/1/46
- untagged ethe 1/1/1 ethe 1/1/3 ethe 1/1/5 ethe 1/1/7 ethe 1/1/9 ethe 1/1/11 ethe 1/1/13 to 1/1/33 ethe 1/1/35 ethe 1/1/37 ethe 1/1/39 to 1/1/45 ethe 1/1/47 to 1/1/48 ethe 1/2/1 to 1/2/10 ethe 1/3/1 to 1/3/6 ethe 1/3/8
+ untagged ethe 1/1/1 ethe 1/1/3 ethe 1/1/5 ethe 1/1/7 ethe 1/1/9 ethe 1/1/11 ethe 1/1/13 to 1/1/33 ethe 1/1/35 ethe 1/1/37 ethe 1/1/39 to 1/1/45 ethe 1/1/48 ethe 1/2/2 to 1/2/5 ethe 1/2/7 to 1/2/10 ethe 1/3/1 to 1/3/6 ethe 1/3/8
  router-interface ve 1
 !
 vlan 40 name LAB_MNGT by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
  untagged ethe 1/1/2
 !
 vlan 41 name LAB_TEST by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
 !
 vlan 42 name LAB_PROD by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38
+ tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
  untagged ethe 1/1/4 ethe 1/1/6 ethe 1/1/8 ethe 1/3/7
 !
 vlan 50 name PRIVATE by port
@@ -37,6 +37,7 @@ vlan 50 name PRIVATE by port
 !
 vlan 100 name IOT by port
  tagged ethe 1/1/38 ethe 1/1/46
+ untagged ethe 1/1/47
 !
 !
 !
@@ -64,7 +65,7 @@ ntp
  server 216.239.35.4
 !
 !
-web-management https
+no web-management http
 !
 !
 !
@@ -93,6 +94,12 @@ interface ethernet 1/1/44
 interface ethernet 1/1/46
  dual-mode  10
  inline power
+!
+interface ethernet 1/2/1
+ dual-mode  40
+!
+interface ethernet 1/2/6
+ dual-mode  40
 !
 interface ethernet 1/3/1
  speed-duplex 10G-full
