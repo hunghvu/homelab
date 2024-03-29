@@ -22,5 +22,14 @@ These are frequently modified files, so they are kept track for IaaC reference p
 Good resource:
 
 - [OpenWRT guide for a dumb access point.](https://openwrt.org/docs/guide-user/network/wifi/dumbap)
-- Using a USB to ethernet adapter requires `kmod-usb-core`, `kmod-usb3`, `kmod-usb-net-rtl8152`. Other package like USB XHCI was bundled with OpenWRT image.
 - [SQM guide](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm).
+- [OpenWRT firmware selector](https://firmware-selector.openwrt.org/), include the following packages for a portable USB image.
+
+  - 6rd
+  - luci-proto-ipv6
+  - kmod-usb-net-rtl8152
+  - kmod-usb3
+  - intel-microcode
+  - amd64-microcode
+  - luci-app-sqm
+  - kmod-i40e
