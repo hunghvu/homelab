@@ -33,3 +33,5 @@ Good resource:
   - amd64-microcode
   - luci-app-sqm
   - kmod-i40e
+  - ethtool
+  - pciutils
