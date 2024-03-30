@@ -25,13 +25,14 @@ Good resource:
 - [SQM guide](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm).
 - [OpenWRT firmware selector](https://firmware-selector.openwrt.org/), include the following packages for a portable USB image.
 
-  - 6rd
-  - luci-proto-ipv6
-  - kmod-usb-net-rtl8152
-  - kmod-usb3
-  - intel-microcode
-  - amd64-microcode
-  - luci-app-sqm
-  - kmod-i40e
-  - ethtool
-  - pciutils
+  - **6rd**: Dependency for IPv6 config (not included in `luci-proto-ipv6)
+  - **luci-proto-ipv6**: GUI for IpV6 config
+  - **kmod-usb-net-rtl8152**: For Realtek USB NIC
+  - **kmod-usb3**: For USB 3.x devices, such as USB NIC
+  - **intel-microcode**: Micro code and security patches for Intel system
+  - **amd64-microcode**: Micro code and security patches for AMD system
+  - **luci-app-sqm**: GUI and dependencies for SQM
+  - **kmod-i40e**: Intel X710-DA2 driver
+  - **ethtool**: To check information of a NIC
+  - **pciutils**: Mostly for `lspci`
+  - **ip**: Mostly for `ip addr`, to check all attached interface, physical and virtual
