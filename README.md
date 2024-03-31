@@ -19,10 +19,11 @@ These are frequently modified files, so they are kept track for IaaC reference p
 
 **Note: The full backup is stored locally, so the repository is more for change management.**
 
-Good resource:
+Good resources:
 
 - [OpenWRT guide for a dumb access point](https://openwrt.org/docs/guide-user/network/wifi/dumbap).
 - [SQM guide](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm).
+- [Root partition and filesystem resize](https://openwrt.org/docs/guide-user/advanced/expand_root).
 - [OpenWRT firmware selector](https://firmware-selector.openwrt.org/).
 
   - Include the following packages for a portable USB image. For on-disk image, remove either amd or intel microcode based on the system hardware.
@@ -38,6 +39,9 @@ Good resource:
     - **ethtool**: To check information of a NIC
     - **pciutils**: Mostly for `lspci`
     - **ip**: Mostly for `ip addr`, to check all attached interface, physical and virtual
+    - **parted**: To resize root partition and file system
+    - **losetup**: To resize root partition and file system
+    - **resize2fs**: To resize root partition and file system
 
   - Remove the following packages:
 
@@ -49,5 +53,5 @@ Good resource:
  - For convenience, below is the list of packages for the firmmware selector (Generic x86/64)
 
 ```
-base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools grub2-bios-setup kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-mbedtls logd luci mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd 6rd luci-proto-ipv6 kmod-usb-net-rtl8152 kmod-usb3 intel-microcode amd64-microcode luci-app-sqm kmod-i40e ethtool pciutils ip
+base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools grub2-bios-setup kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-mbedtls logd luci mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd 6rd luci-proto-ipv6 kmod-usb-net-rtl8152 kmod-usb3 intel-microcode amd64-microcode luci-app-sqm kmod-i40e ethtool pciutils ip parted losetup resize2fs
 ```
