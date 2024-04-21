@@ -1,16 +1,24 @@
 {
   "model": {
-    "id": "google-panther",
-    "name": "GOOGLE Panther"
-  },
-  "network": {
-    "lan": {
-      "device": "eth0",
-      "protocol": "static"
-    },
+    "id": "hp-elite-desk-800-g3-sff",
+    "name": "HP EliteDesk 800 G3 SFF"
+},                                       
+"network": {
     "wan": {
-      "device": "eth1",
-      "protocol": "pppoe"
-    }
-  }
+            "device": "eth0",
+            "protocol": "pppoe"
+    },                         
+    "lan": {
+            "device": "eth1",
+            "protocol": "static"
+    },                          
+    "undefined": {
+            "device": "eth2",
+            "protocol": "static"
+    },                          
+    "dmz": {
+            "device": "eth3",
+            "protocol": "static"
+    }                           
+}  
 }
