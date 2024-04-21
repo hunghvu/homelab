@@ -32,14 +32,7 @@ config zone
 	list network 'private'
 
 config zone
-	option name 'lab_test'
-	option input 'ACCEPT'
-	option output 'ACCEPT'
-	option forward 'ACCEPT'
-	list network 'lab_test'
-
-config zone
-	option name 'lab_prod'
+	option name 'services'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
@@ -147,25 +140,73 @@ config forwarding
 	option dest 'iot'
 
 config forwarding
-	option src 'lab_test'
+	option src 'services'
 	option dest 'iot'
 
 config forwarding
-	option src 'lab_test'
+	option src 'services'
 	option dest 'wan'
 
 config forwarding
 	option src 'mngt'
-	option dest 'lab_test'
+	option dest 'services'
+
+config zone
+	option name 'dmz_private'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list network 'dmz_mngt'
 
 config forwarding
-	option src 'lab_prod'
-	option dest 'iot'
+	option src 'dmz_private'
+	option dest 'wan'
+
+config zone
+	option name 'dmz_public'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list network 'dmz_prod'
 
 config forwarding
-	option src 'lab_prod'
+	option src 'dmz_public'
 	option dest 'wan'
 
 config forwarding
-	option src 'mngt'
-	option dest 'lab_prod'
+	option src 'dmz_private'
+	option dest 'dmz_public'
+
+config rule
+	option name 'Allow-DHCP-DMZ-Private'
+	option src 'dmz_private'
+	option src_port '68'
+	option dest_port '67'
+	option target 'ACCEPT'
+	list proto 'udp'
+
+config rule
+	option name 'Allow-DHCP-DMZ-Public'
+	option src 'dmz_public'
+	option src_port '68'
+	option dest_port '67'
+	option target 'ACCEPT'
+	list proto 'udp'
+
+config rule
+	option name 'Allow-DNS-DMZ-Private'
+	option src 'dmz_private'
+	option src_port '53'
+	option dest_port '53'
+	option target 'ACCEPT'
+	list proto 'tcp'
+	list proto 'udp'
+
+config rule
+	option name 'Allow-DNS-DMZ-Public'
+	option src 'dmz_public'
+	option src_port '53'
+	option dest_port '53'
+	option target 'ACCEPT'
+	list proto 'tcp'
+	list proto 'udp'
