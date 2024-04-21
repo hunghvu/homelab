@@ -2,24 +2,41 @@
 
 ## OpenWRT
 
-There are 2 packages:
+### Explanation
+
+There are 2 main folders:
 
 - `x86` is for an edge firewall.
-- `arm` is for a dumb access point.
+- `arm` is for a dumb access point, and managed switches.
 
-Only the following files are in the repository:
+The files by themselves are not backups. They are for change management and future reference purposes. Sensitive information such as username, ssid, password, key are redacted.
 
-- dhcp
-- firewall
-- firewall-opkg
-- network
-- wireless
+**Note: The full backup is stored locally.**
 
-These are frequently modified files, so they are kept track for IaaC reference purpose. Sensitive information such as username, ssid, password, key are ommited.
+### Notes about ARM devices
 
-**Note: The full backup is stored locally, so the repository is more for change management.**
+Disable `dnsmasq`, `firewall`, and `odhcpd` because these services are only necessary in x86 firewall/router. This also disabled the GUI of these services.
 
-Good resources:
+To persistently disable after reboot and upgrade.
+
+```
+# In the dashboard, look at navbar: System > Startup > Local Startup
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+for i in dnsmasq firewall odhcpd; do
+  if /etc/init.d/"$i" enabled; then
+    /etc/init.d/"$i" disable
+    /etc/init.d/"$i" stop
+  fi
+done
+
+exit 0
+
+
+```
+
+### Online resources:
 
 - [OpenWRT guide for a dumb access point](https://openwrt.org/docs/guide-user/network/wifi/dumbap).
 - [SQM guide](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm).
