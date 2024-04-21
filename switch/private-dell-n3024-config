@@ -1,20 +1,17 @@
 !Current Configuration:
 !Software Capability "Stack Limit = 8, VLAN Limit = 1024"
 !Image File "N3000AdvLitev6.5.4.21"
-!System Description "Dell EMC Networking N3024, 6.5.4.21, Linux 3.6.5-e3cd5a07,                                                                                                               Not Available"
+!System Description "Dell EMC Networking N3024, 6.5.4.21, Linux 3.6.5-e3cd5a07, Not Available"
 !System Software Version 6.5.4.21
 !
 configure
-vlan 10,40-42,50,100
+vlan 10,40,42,50,100
 exit
 vlan 10
 name "infrastructure"
 exit
 vlan 40
 name "lab_mngt"
-exit
-vlan 41
-name "lab_test"
 exit
 vlan 42
 name "lab_prod"
@@ -25,7 +22,7 @@ exit
 vlan 100
 name "iot"
 exit
-hostname "private-dell-n3024"
+hostname "dell-n3024"
 slot 1/0 1    ! Dell EMC Networking N3024
 stack
 member 1 1    ! N3024
@@ -37,6 +34,7 @@ interface vlan 10
 ip address dhcp
 exit
 username REDACTED password REDACTED privilege 15 encrypted
+ip ssh server
 application install SupportAssist auto-restart start-on-boot
 !
 interface Gi1/0/1
@@ -130,13 +128,14 @@ exit
 interface Gi1/0/23
 switchport mode trunk
 switchport access vlan 10
+switchport trunk native vlan 10
 switchport trunk allowed vlan 2-39,43-4093
 exit
 !
 interface Gi1/0/24
 switchport mode trunk
 switchport trunk native vlan 10
-switchport trunk allowed vlan 2-4093
+switchport trunk allowed vlan 2-9,11-41,43-49,51-99,101-4093
 exit
 !
 interface Te1/0/1
