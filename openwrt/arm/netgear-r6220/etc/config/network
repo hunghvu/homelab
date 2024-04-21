@@ -1,0 +1,49 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fdd7:c70a:6d6f::/48'
+	option packet_steering '1'
+
+config device
+	option type 'bridge'
+	option name 'br-dmz'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+	list ports 'wan'
+
+config bridge-vlan
+	option device 'br-dmz'
+	option vlan '200'
+	list ports 'lan1:u*'
+	list ports 'lan2:u*'
+	list ports 'lan3:u*'
+	list ports 'lan4:u*'
+	list ports 'wan:u*'
+
+config bridge-vlan
+	option device 'br-dmz'
+	option vlan '210'
+	list ports 'lan1:t'
+	list ports 'lan2:t'
+	list ports 'lan3:t'
+	list ports 'lan4:t'
+	list ports 'wan:t'
+
+config interface 'dmz_prod'
+	option proto 'none'
+	option device 'br-dmz.210'
+
+config interface 'dmz_mngt'
+	option proto 'static'
+	option device 'br-dmz.200'
+	option ipaddr '172.16.200.2'
+	option netmask '255.255.255.0'
+	option gateway '172.16.200.1'
+
