@@ -22,10 +22,10 @@ vlan 100
 #
 #
 #
-#
-#
-#
-#
+#                                     
+#                                     
+#                                     
+#                                     
 #
 #
 #
@@ -45,11 +45,11 @@ contact-info "https://hungvu.tech"
 serial_port baud_rate 38400
 #
 #
-system-time ntp UTC-08:00 162.159.200.123 162.159.200.123 12
+system-time ntp UTC-08:00 162.159.200.123 162.159.200.123 12    
 system-time dst predefined USA
 #
 #
-#
+#                                     
 #
 user name REDACTED privilege admin secret 5 REDACTED
 no service reset-disable
@@ -61,7 +61,7 @@ no service reset-disable
 #
 #
 #
-ip dos-prevent
+ip dos-prevent 
 ip dos-prevent type scan-synfin
 ip dos-prevent type xma-scan
 ip dos-prevent type null-scan
@@ -70,10 +70,10 @@ ip dos-prevent type ping-flood
 ip dos-prevent type syn-flood
 #
 #
-ip ssh server
+ip ssh server 
 no ip ssh version v1
 #
-#
+#                                     
 snmp-server
 #
 #
@@ -97,18 +97,7 @@ interface port-channel 2
   switchport pvid 40
   no switchport general allowed vlan 1
 #
-interface port-channel 3
-  switchport general allowed vlan 10 untagged
-  switchport general allowed vlan 40-42,50,100 tagged
-  switchport pvid 40
-  no switchport general allowed vlan 1
-#
-interface port-channel 4
-  switchport general allowed vlan 42 untagged
-  switchport pvid 42
-  no switchport general allowed vlan 1
-#
-interface vlan 1
+interface vlan 1                      
   no ip address
   no ipv6 enable
 #
@@ -117,39 +106,56 @@ interface vlan 10
   ipv6 enable
 #
 interface ten-gigabitEthernet 1/0/1
-
-  channel-group 4 mode active
-  lacp port-priority 1
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+  
 #
 interface ten-gigabitEthernet 1/0/2
-
-  channel-group 4 mode active
-  lacp port-priority 1
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+  
 #
 interface ten-gigabitEthernet 1/0/3
-
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+                                      
 #
 interface ten-gigabitEthernet 1/0/4
-
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+  
 #
 interface ten-gigabitEthernet 1/0/5
-
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+  
   channel-group 2 mode active
   lacp port-priority 1
 #
 interface ten-gigabitEthernet 1/0/6
-
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
+  no switchport general allowed vlan 1
+  
   channel-group 2 mode active
   lacp port-priority 1
 #
-interface ten-gigabitEthernet 1/0/7
-
+interface ten-gigabitEthernet 1/0/7   
+  switchport general allowed vlan 42 untagged
+  switchport pvid 42
+  no switchport general allowed vlan 1
+  
 #
 interface ten-gigabitEthernet 1/0/8
   switchport general allowed vlan 10 untagged
   switchport general allowed vlan 40-42,50,100 tagged
   switchport pvid 10
   no switchport general allowed vlan 1
-
+  
 #
 end
