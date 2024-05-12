@@ -1,5 +1,5 @@
 config-file-header
-REDACTED
+aruba-1930
 vInstantOn_1930_2.9.1.0 (17) / RHPE2.9.1_932_306_001
 SKU Description "Aruba Instant On 1930 24G 4SFP/SFP+ Switch JL682A"
 @
@@ -70,8 +70,7 @@ interface 25
  channel-group 1 mode auto 
 !
 interface 26
- switchport general allowed vlan add 10 untagged 
- switchport general pvid 10 
+ channel-group 1 mode auto 
 !
 interface 27
  switchport general allowed vlan add 50,100 tagged 
