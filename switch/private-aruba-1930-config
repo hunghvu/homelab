@@ -1,0 +1,92 @@
+config-file-header
+REDACTED
+vInstantOn_1930_2.9.1.0 (17) / RHPE2.9.1_932_306_001
+SKU Description "Aruba Instant On 1930 24G 4SFP/SFP+ Switch JL682A"
+@
+!
+unit-type-control-start 
+unit-type unit 1 network gi uplink te 
+unit-type-control-end 
+!
+vlan database
+vlan 10,40,42,50,100 
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone
+voice vlan oui-table add 00036b Cisco_phone
+voice vlan oui-table add 00096e Avaya
+voice vlan oui-table add 000fe2 3Com
+voice vlan oui-table add 0060b9 H3C
+voice vlan oui-table add 64167f Polycom
+voice vlan oui-table add 805e0c Yealink
+priority-queue out num-of-queues 0 
+hostname aruba-1930
+username REDACTED password encrypted REDACTED privilege 15 
+snmp-server engineid local default 
+clock timezone J 0 minutes 0
+clock summer-time J recurring usa 
+clock source sntp
+sntp unicast client enable
+sntp unicast client poll
+sntp server 162.159.200.123 poll 
+sntp port 123
+management vlan 10 
+!
+interface vlan 10
+ name infrastructure 
+!
+interface vlan 40
+ name lab_mngt 
+!
+interface vlan 42
+ name lab_prod 
+!
+interface vlan 50
+ name private 
+!
+interface vlan 100
+ name iot 
+!
+interface 1
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
+!
+interface 2
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
+!
+interface 3
+ switchport general allowed vlan add 42 untagged 
+ switchport general pvid 42 
+!
+interface 4
+ switchport general allowed vlan add 42 untagged 
+ switchport general pvid 42 
+!
+interface 24
+ switchport general allowed vlan add 50 untagged 
+ switchport general pvid 50 
+!
+interface 25
+ channel-group 1 mode auto 
+!
+interface 26
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
+!
+interface 27
+ switchport general allowed vlan add 50,100 tagged 
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
+!
+interface 28
+ switchport general allowed vlan add 40,42,50,100 tagged 
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
+!
+interface TRK1
+ description sx3008f
+ switchport general allowed vlan add 42 tagged 
+ switchport general allowed vlan add 40 untagged 
+ switchport general pvid 40 
+!
+exit
