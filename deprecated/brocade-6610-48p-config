@@ -16,28 +16,25 @@ stack disable
 !
 vlan 1 name DEFAULT-VLAN by port
 !
-vlan 10 name INFRASTRUCTURE by port
- tagged ethe 1/1/38 ethe 1/1/46
- untagged ethe 1/1/1 ethe 1/1/3 ethe 1/1/5 ethe 1/1/7 ethe 1/1/9 ethe 1/1/11 ethe 1/1/13 to 1/1/33 ethe 1/1/35 ethe 1/1/37 ethe 1/1/39 to 1/1/45 ethe 1/1/48 ethe 1/2/2 to 1/2/5 ethe 1/2/7 to 1/2/10 ethe 1/3/1 to 1/3/6 ethe 1/3/8
- router-interface ve 1
+vlan 10 name infrastructure by port
+ tagged ethe 1/3/1 to 1/3/3
+ untagged ethe 1/1/1 to 1/1/2
+ router-interface ve 10
 !
-vlan 40 name LAB_MNGT by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
- untagged ethe 1/1/2
+vlan 40 name lab_mngt by port
+ tagged ethe 1/3/1 ethe 1/3/3
+ untagged ethe 1/1/5
 !
-vlan 41 name LAB_TEST by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
+vlan 42 name lab_prod by port
+ tagged ethe 1/3/1 ethe 1/3/3
+ untagged ethe 1/1/3 to 1/1/4
 !
-vlan 42 name LAB_PROD by port
- tagged ethe 1/1/10 ethe 1/1/12 ethe 1/1/34 ethe 1/1/36 ethe 1/1/38 ethe 1/2/1 ethe 1/2/6
- untagged ethe 1/1/4 ethe 1/1/6 ethe 1/1/8 ethe 1/3/7
+vlan 50 name private by port
+ tagged ethe 1/3/1 to 1/3/2
+ untagged ethe 1/1/48
 !
-vlan 50 name PRIVATE by port
- tagged ethe 1/1/38 ethe 1/1/46
-!
-vlan 100 name IOT by port
- tagged ethe 1/1/38 ethe 1/1/46
- untagged ethe 1/1/47
+vlan 100 name iot by port
+ tagged ethe 1/3/1 to 1/3/2
 !
 !
 !
@@ -46,13 +43,14 @@ vlan 100 name IOT by port
 aaa authentication web-server default local
 aaa authentication login default local
 enable aaa console
-hostname brocade-6610-48p-1
+hostname brocade-6610-48
 ip dhcp-client disable
 ip dns server-address 10.10.10.2 10.10.10.3
 ip route 0.0.0.0/0 10.10.10.1
 !
 no telnet server
 username root password .....
+username REDACTED password .....
 !
 !
 clock summer-time
@@ -73,41 +71,16 @@ no web-management http
 !
 !
 !
-interface ethernet 1/1/10
- dual-mode  40
-!
-interface ethernet 1/1/12
- dual-mode  40
-!
-interface ethernet 1/1/34
- dual-mode  40
-!
-interface ethernet 1/1/36
- dual-mode  40
-!
-interface ethernet 1/1/38
- dual-mode  10
-!
-interface ethernet 1/1/44
- inline power
-!
-interface ethernet 1/1/46
- dual-mode  10
- inline power
-!
-interface ethernet 1/2/1
- dual-mode  40
-!
-interface ethernet 1/2/6
- dual-mode  40
-!
 interface ethernet 1/3/1
+ dual-mode  10
  speed-duplex 10G-full
 !
 interface ethernet 1/3/2
+ dual-mode  10
  speed-duplex 10G-full
 !
 interface ethernet 1/3/3
+ dual-mode  10
  speed-duplex 10G-full
 !
 interface ethernet 1/3/4
@@ -125,7 +98,7 @@ interface ethernet 1/3/7
 interface ethernet 1/3/8
  speed-duplex 10G-full
 !
-interface ve 1
+interface ve 10
  ip address 10.10.10.10 255.255.255.0
 !
 !
