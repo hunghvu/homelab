@@ -4,16 +4,11 @@
 
 ### Explanation
 
-There are 2 main folders:
-
-- `x86` is for an edge firewall.
-- `arm` is for a dumb access point, and managed switches.
-
 The files by themselves are not backups. They are for change management and future reference purposes. Sensitive information such as username, ssid, password, key are redacted.
 
 **Note: The full backup is stored locally.**
 
-### Notes about ARM devices
+### Notes about access points and switches
 
 Disable `dnsmasq`, `firewall`, and `odhcpd` because these services are only necessary in x86 firewall/router. This also disabled the GUI of these services.
 
