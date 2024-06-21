@@ -13,6 +13,20 @@ config dnsmasq
 	option localservice '1'
 	option ednspacket_max '1232'
 	option confdir '/tmp/dnsmasq.d'
+	list server '127.0.0.1#5054'
+	list server '/mask.icloud.com/'
+	list server '/mask-h2.icloud.com/'
+	list server '/use-application-dns.net/'
+	list server '127.0.0.1#5053'
+	option doh_backup_noresolv '-1'
+	option noresolv '1'
+	list doh_backup_server '127.0.0.1#5054'
+	list doh_backup_server '/mask.icloud.com/'
+	list doh_backup_server '/mask-h2.icloud.com/'
+	list doh_backup_server '/use-application-dns.net/'
+	list doh_backup_server '127.0.0.1#5053'
+	list doh_server '127.0.0.1#5053'
+	list addnhosts '/var/run/adblock-fast/dnsmasq.addnhosts'
 
 config odhcpd 'odhcpd'
 	option maindhcp '0'
@@ -30,26 +44,14 @@ config dhcp 'iot'
 	list ra_flags 'other-config'
 
 config host
-	option name 'ubuntu-dell'
-	option dns '1'
-	option mac '74:E6:E2:E0:CC:2F'
-	option ip '10.10.10.2'
-
-config host
-	option name 'ubuntu-hp'
-	option dns '1'
-	option mac 'D8:97:BA:4E:E5:CC'
-	option ip '10.10.10.3'
-
-config host
 	option name 'zyxel-nwax50pro'
 	list mac 'F4:4D:5C:5D:42:8D'
 	option ip '10.10.10.4'
 
 config host
 	option name 'tl-sx3008f'
-	list mac '1C:61:B4:7C:F6:0F'
 	option ip '10.10.10.11'
+	list mac '1C:61:B4:7C:F6:0F'
 
 config host
 	option name 'dell-n3024'
@@ -57,34 +59,39 @@ config host
 	list mac 'F8:B1:56:6C:84:44'
 
 config host
-	option name 'ubuntu-hpt530-top'
-	option ip '10.10.40.108'
-	option mac '04:0E:3C:1E:24:46'
+	option name 'aruba-1930'
+	list mac 'EC:50:AA:36:0D:21'
+	option ip '10.10.10.13'
 
 config host
-	option name 'harvester-management-vip'
-	option ip '10.10.40.141'
-	list mac 'C2:A3:81:85:28:C0'
+	option name 'proxmox-node1-4u'
+	option ip '10.10.40.110'
+	list mac '3C:FD:FE:BE:15:B8'
 
 config host
-	option name 'ubuntu-hpt530-3rd'
-	option ip '10.10.42.158'
-	option mac '04:0E:3C:1E:24:AE'
+	option name 'proxmox-node2-10g'
+	option ip '10.10.40.237'
+	list mac '3C:FD:FE:BE:12:3C'
 
 config host
-	option name 'truenas'
-	option ip '10.10.42.238'
-	list mac '74:DA:38:FF:C8:6C'
+	option name 'docker-host1'
+	option ip '10.10.42.106'
+	list mac 'BE:6B:89:F2:E7:AB'
 
 config host
-	option name 'homeassistant'
-	option ip '10.10.42.246'
-	option mac '04:0E:3C:1F:B5:8E'
+	option name 'proxmox-node3-40g'
+	option ip '10.10.40.218'
+	list mac '7C:FE:90:16:E2:70'
 
 config host
 	option name 'kauf-bulb-ed83e9'
 	option ip '10.10.100.214'
 	option mac 'A8:48:FA:ED:83:E9'
+
+config host
+	option name 'truenas'
+	option ip '10.10.50.166'
+	option mac 'C6:00:86:E8:5B:4F'
 
 config host
 	option name 'KL135'
@@ -107,46 +114,40 @@ config dhcp 'private'
 	option force '1'
 	option ra 'server'
 	option dhcpv6 'server'
-	list dhcp_option '6,10.10.10.2,10.10.10.3'
+	option start '100'
+	option limit '150'
 
 config dhcp 'lab_mngt'
 	option interface 'lab_mngt'
 	option leasetime '12h'
 	option force '1'
-	list dhcp_option '6,10.10.10.2,10.10.10.3'
 	option ra 'server'
 	option dhcpv6 'server'
+	option start '100'
+	option limit '150'
 
 config dhcp 'lab_prod'
 	option interface 'lab_prod'
 	option leasetime '12h'
 	option force '1'
-	list dhcp_option '6,10.10.10.2,10.10.10.3'
 	option ra 'server'
 	option dhcpv6 'server'
+	option start '100'
+	option limit '150'
 
 config dhcp 'infrastructure'
 	option interface 'infrastructure'
 	option leasetime '12h'
 	option force '1'
-	list dhcp_option '6,10.10.10.2,10.10.10.3'
 	option ra 'server'
 	option dhcpv6 'server'
+	option start '100'
+	option limit '150'
 
 config host
 	option name 'hp-officejet-pro-8715'
 	list mac '10:62:E5:B6:5D:66'
 	option ip '10.10.100.234'
-
-config host
-	option name 'harvester-node1-4u'
-	list mac '3C:FD:FE:BE:15:B8'
-	option ip '10.10.40.110'
-
-config host
-	option name 'ubuntu-server-24-04-docker-containers'
-	option ip '10.10.42.106'
-	option mac 'BE:6B:89:F2:E7:AB'
 
 config dhcp 'dmz_mngt'
 	option interface 'dmz_mngt'
@@ -167,21 +168,31 @@ config dhcp 'dmz_prod'
 	list dhcp_option '6,1.1.1.2,9.9.9.9'
 
 config host
-	option name 'OpenWrt'
+	option name 'hpe-1920-24g'
 	option ip '172.16.200.2'
 	list mac '9C:3D:CF:C4:88:01'
 
 config host
-	option name 'DESKTOP-08QD1TD'
+	option name 'dmz-proxmox'
 	option ip '172.16.200.202'
-	option mac 'B0:5C:DA:2A:19:AF'
+	list mac 'B0:5C:DA:2A:19:AF'
 
 config host
 	option name 'dmz-edge-server-hungvu-tech'
 	option ip '172.16.210.212'
-	option mac 'BC:24:11:45:BF:E3'
+	list mac 'BC:24:11:2F:21:E8'
 
 config host
-	option name 'web-server-hungvu-tech'
+	option name 'dmz-web-server-hungvu-tech'
 	option ip '172.16.210.229'
-	option mac 'BC:24:11:46:83:E5'
+	list mac 'BC:24:11:11:11:61'
+
+config host
+	option name 'apollo-air-1-c55458'
+	option ip '10.10.100.235'
+	option mac '60:55:F9:C5:54:58'
+
+config host
+	option name 'homeassistant'
+	option ip '10.10.42.170'
+	option mac 'BC:24:11:46:A5:9A'

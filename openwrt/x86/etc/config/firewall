@@ -210,3 +210,11 @@ config rule
 	option target 'ACCEPT'
 	list proto 'tcp'
 	list proto 'udp'
+
+config forwarding
+	option src 'mngt'
+	option dest 'dmz_private'
+
+config forwarding
+	option src 'mngt'
+	option dest 'dmz_public'

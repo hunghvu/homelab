@@ -1,24 +1,28 @@
 {
-  "model": {
-    "id": "hp-elite-desk-800-g3-sff",
-    "name": "HP EliteDesk 800 G3 SFF"
-},                                       
-"network": {
-    "wan": {
-            "device": "eth0",
-            "protocol": "pppoe"
-    },                         
-    "lan": {
-            "device": "eth1",
-            "protocol": "static"
-    },                          
-    "undefined": {
-            "device": "eth2",
-            "protocol": "static"
-    },                          
-    "dmz": {
-            "device": "eth3",
-            "protocol": "static"
-    }                           
-}  
+	"model": {
+		"id": "hp-elite-desk-800-g3-sff",
+		"name": "HP EliteDesk 800 G3 SFF"
+	},
+	"network": {
+		"wan": {
+			"device": "eth0",
+			"protocol": "pppoe"
+		},
+		"lan": {
+			"ports": [
+				"eth1",
+				"eth2",
+				"eth3",
+				"eth4",
+				"eth5"
+			],
+			"protocol": "static"
+		},
+		"dmz": {
+			"ports": [
+				"eth6"
+			],
+			"protocol": "static"
+		}
+	}
 }
