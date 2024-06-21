@@ -62,30 +62,34 @@ interface 4
  switchport general allowed vlan add 42 untagged 
  switchport general pvid 42 
 !
+interface 23
+ switchport general allowed vlan add 50 untagged 
+ switchport general pvid 50 
+!
 interface 24
  switchport general allowed vlan add 50 untagged 
  switchport general pvid 50 
 !
 interface 25
- channel-group 1 mode auto 
+ switchport general allowed vlan add 40,42,50,100 tagged 
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
 !
 interface 26
  channel-group 1 mode auto 
 !
 interface 27
- switchport general allowed vlan add 50,100 tagged 
- switchport general allowed vlan add 10 untagged 
- switchport general pvid 10 
+ switchport general allowed vlan add 42,50,100 tagged 
+ switchport general allowed vlan add 40 untagged 
+ switchport general pvid 40 
 !
 interface 28
- switchport general allowed vlan add 40,42,50,100 tagged 
- switchport general allowed vlan add 10 untagged 
- switchport general pvid 10 
+ channel-group 1 mode auto 
 !
 interface TRK1
  description sx3008f
- switchport general allowed vlan add 42 tagged 
- switchport general allowed vlan add 40 untagged 
- switchport general pvid 40 
+ switchport general allowed vlan add 40,42,50,100 tagged 
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
 !
 exit
