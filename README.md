@@ -8,7 +8,7 @@ The files by themselves are not backups. They are for change management and futu
 
 **Note: The full backup is stored locally.**
 
-### Notes about access points and switches
+### Notes about OpenWRT access points and switches
 
 Disable `dnsmasq`, `firewall`, and `odhcpd` because these services are only necessary in x86 firewall/router. This also disabled the GUI of these services.
 
@@ -35,7 +35,7 @@ exit 0
 
 - [OpenWRT guide for a dumb access point](https://openwrt.org/docs/guide-user/network/wifi/dumbap).
 - [SQM guide](https://openwrt.org/docs/guide-user/network/traffic-shaping/sqm).
-- [Root partition and filesystem resize](https://openwrt.org/docs/guide-user/advanced/expand_root).
+- [Root partition and filesystem resize](https://openwrt.org/docs/guide-user/advanced/expand_root) (currently is not usable in 23.05.4, and will brick the system).
 - [OpenWRT firmware selector](https://firmware-selector.openwrt.org/).
 
   - Include the following packages for a portable USB image. For on-disk image, remove either amd or intel microcode based on the system hardware.
@@ -85,3 +85,26 @@ exit 0
 ```
 base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools grub2-bios-setup kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-mbedtls logd luci mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd 6rd luci-proto-ipv6 kmod-usb-net-rtl8152 kmod-usb3 intel-microcode amd64-microcode luci-app-sqm kmod-i40e ethtool pciutils ip parted losetup resize2fs luci-app-https-dns-proxy luci-app-adblock-fast gawk grep sed coreutils-sort zram-swap kmod-lib-lz4 kmod-lib-zstd
 ```
+
+### SFP+ compatibility
+
+#### Aruba 1930 JL682A
+
+- For DAC, the switch accepts pretty much anything.
+
+  - If the DAC is not compatible, SFP+ still operates, but the LED becomes amber color.
+  - Aside from officialy listed DAC, the older code from OfficeConnect line such as J928xx(J9281/3/5:B/D) is also compatible. This means the LED is a normal green color.
+
+- For optic modules, outside of officially listed modules, they depend. Some modules work some don't. Not sure about the rule yet.
+
+#### TP-Link TL-SX3008F
+
+- For DAC, the switch accept everything, no failed attempt yet.
+- For optic modules, there is no officially listed modules. It appears everything works, but some older optics will not auto negotiate properly. This means the link rate may randomly switches between 1 Gbe, 10 Gbe, or is stuck at one rate (normally 1 Gbe.)
+
+#### Intel X710-DA2
+
+- For both DAC and optic modules, rather picky.
+- The compatibility differs in Windows and Linux. Some DAC and optic work in both OS, some work in one but not the other.
+- It seems generic Cisco-coded DAC are accepted normally. However, some such as J928xx DAC from HP are not usable in Windows (error in Event Viewer log), but is fine in Linux.
+- For optic modules, not sure about the rule yet because all purchases have optic modules included.
