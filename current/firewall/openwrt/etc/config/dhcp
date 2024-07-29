@@ -18,6 +18,7 @@ config dnsmasq
 	list server '/mask-h2.icloud.com/'
 	list server '/use-application-dns.net/'
 	list server '127.0.0.1#5053'
+	list addnhosts '/var/run/adblock-fast/dnsmasq.addnhosts'
 	option doh_backup_noresolv '-1'
 	option noresolv '1'
 	list doh_backup_server '127.0.0.1#5054'
@@ -26,7 +27,6 @@ config dnsmasq
 	list doh_backup_server '/use-application-dns.net/'
 	list doh_backup_server '127.0.0.1#5053'
 	list doh_server '127.0.0.1#5053'
-	list addnhosts '/var/run/adblock-fast/dnsmasq.addnhosts'
 
 config odhcpd 'odhcpd'
 	option maindhcp '0'
@@ -196,3 +196,8 @@ config host
 	option name 'homeassistant'
 	option ip '10.10.42.170'
 	option mac 'BC:24:11:46:A5:9A'
+
+config host
+	option name 'apollo-air-1-1ECAA8'
+	option ip '10.10.100.115'
+	option mac '34:B7:DA:1E:CA:A8'

@@ -15,4 +15,3 @@ config https-dns-proxy
 	option listen_port '5053'
 	option user 'nobody'
 	option group 'nogroup'
-

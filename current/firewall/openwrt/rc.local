@@ -1,3 +1,5 @@
+# Currently is not used in 23.05.4 due to partition resize issue
+# https://forum.openwrt.org/t/openwrt-23-05-4-service-release/204514/48
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
