@@ -16,12 +16,9 @@ config device
 	list ports 'eth2'
 
 config interface 'wan'
-	option proto 'pppoe'
-	option password 'REDACTED'
-	option ipv6 'auto'
+	option proto 'dhcp'
 	option device 'br-wan.201'
-	option username 'REDACTED'
-	option peerdns '0'
+	option hostname '*'
 
 config bridge-vlan
 	option device 'br-lan'
@@ -100,11 +97,6 @@ config device
 	option bridge_empty '1'
 	list ports 'eth0'
 
-config bridge-vlan
-	option device 'br-wan'
-	option vlan '201'
-	list ports 'eth0:t'
-
 config device
 	option type 'bridge'
 	option name 'br-dmz'
@@ -133,3 +125,8 @@ config interface 'dmz_prod'
 	option ipaddr '172.16.210.1'
 	option netmask '255.255.255.0'
 	option ip6assign '64'
+
+config bridge-vlan
+	option device 'br-wan'
+	option vlan '201'
+	list ports 'eth0:t'

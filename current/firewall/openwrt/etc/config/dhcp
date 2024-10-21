@@ -18,7 +18,6 @@ config dnsmasq
 	list server '/mask-h2.icloud.com/'
 	list server '/use-application-dns.net/'
 	list server '127.0.0.1#5053'
-	list addnhosts '/var/run/adblock-fast/dnsmasq.addnhosts'
 	option doh_backup_noresolv '-1'
 	option noresolv '1'
 	list doh_backup_server '127.0.0.1#5054'
@@ -27,6 +26,7 @@ config dnsmasq
 	list doh_backup_server '/use-application-dns.net/'
 	list doh_backup_server '127.0.0.1#5053'
 	list doh_server '127.0.0.1#5053'
+	list addnhosts '/var/run/adblock-fast/dnsmasq.addnhosts'
 
 config odhcpd 'odhcpd'
 	option maindhcp '0'
