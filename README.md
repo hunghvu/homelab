@@ -57,6 +57,7 @@ exit 0
     - **losetup**: To resize root partition and file system
     - **resize2fs**: To resize root partition and file system
     - **luci-app-https-dns-proxy**: Enable DNS over HTTPS
+      - Becareful when restore backup that has `https-dns-proxy` config, to a system (usually fresh installed), that does not have the package. Because an existing backup modifies DNS config in away which requires the existence of `https-dns-proxy`, so without the package, all DNS queries will fail, and hence no Internet.
     - **luci-app-adblock-fast**: Lightweight DNSBL solution that supports both IPv4, IPv6 and works in conjunction with `luci-app-https-dns-proxy`. [The document is available here](https://docs.openwrt.melmac.net/adblock-fast/)
     - **powertop**: To monitor idle state of the system, `powertop --auto-tune` is a fast way to enable all ASPM capabilities.
     - The following packages are optional dependencies to accelerate `adblock-fast`:
