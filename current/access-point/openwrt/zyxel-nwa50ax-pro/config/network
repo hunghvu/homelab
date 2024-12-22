@@ -13,18 +13,10 @@ config device
 	option type 'bridge'
 	list ports 'eth0'
 
-config interface 'lan'
-	option device 'br-lan.10'
-	option proto 'static'
-	option ipaddr '10.10.10.4'
-	option netmask '255.255.255.0'
-	option ip6assign '60'
-	option gateway '10.10.10.1'
-
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '10'
-	list ports 'eth0'
+	list ports 'eth0:u*'
 
 config bridge-vlan
 	option device 'br-lan'
@@ -37,17 +29,13 @@ config bridge-vlan
 	list ports 'eth0:t'
 
 config interface 'private'
-	option proto 'static'
+	option proto 'dhcp'
 	option device 'br-lan.50'
-	option ipaddr '10.10.50.2'
-	option netmask '255.255.255.0'
-	option gateway '10.10.50.1'
-	option type 'bridge'
 
 config interface 'iot'
-	option proto 'static'
+	option proto 'dhcp'
 	option device 'br-lan.100'
-	option ipaddr '10.10.100.2'
-	option netmask '255.255.255.0'
-	option gateway '10.10.100.1'
 
+config interface 'infrastructure'
+	option proto 'dhcp'
+	option device 'br-lan.10'
