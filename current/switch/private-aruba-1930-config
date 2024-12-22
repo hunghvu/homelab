@@ -1,6 +1,6 @@
 config-file-header
 aruba-1930
-vInstantOn_1930_3.0.0.0 (12) / RLINUX_932_310
+vInstantOn_1930_3.1.0.0 (9) / RLINUX_932_313
 SKU Description "HPE Networking Instant On Switch 24p Gigabit 4p SFP+ 1930 JL682A"
 @
 !
@@ -46,18 +46,22 @@ interface vlan 50
 interface vlan 100
  name iot 
 !
+interface 22
+ switchport general allowed vlan add 50 untagged 
+ switchport general pvid 50 
+!
 interface 23
  switchport general allowed vlan add 50 untagged 
  switchport general pvid 50 
 !
 interface 24
- switchport general allowed vlan add 50 untagged 
- switchport general pvid 50 
+ switchport general allowed vlan add 40,42,50,100 tagged 
+ switchport general allowed vlan add 10 untagged 
+ switchport general pvid 10 
 !
 interface 25
- switchport general allowed vlan add 42,50,100 tagged 
- switchport general allowed vlan add 40 untagged 
- switchport general pvid 40 
+ switchport general allowed vlan add 50 untagged 
+ switchport general pvid 50 
 !
 interface 26
  switchport general allowed vlan add 40,42,50,100 tagged 

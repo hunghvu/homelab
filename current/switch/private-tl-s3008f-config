@@ -97,50 +97,42 @@ interface vlan 10
   ipv6 enable
 #
 interface ten-gigabitEthernet 1/0/1
-  switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
-  switchport pvid 40
-  no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/2
-  switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
-  switchport pvid 40
+  switchport general allowed vlan 50 untagged
+  switchport pvid 50
   no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/3
-  switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
-  switchport pvid 40
-  no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/4
   switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
+  switchport general allowed vlan 42 tagged
   switchport pvid 40
   no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/5
   switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
+  switchport general allowed vlan 42 tagged
   switchport pvid 40
   no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/6
   switchport general allowed vlan 40 untagged
-  switchport general allowed vlan 42,100 tagged
+  switchport general allowed vlan 42,50,100 tagged
   switchport pvid 40
   no switchport general allowed vlan 1
   
 #
 interface ten-gigabitEthernet 1/0/7
-  switchport general allowed vlan 50 untagged
-  switchport pvid 50
+  switchport general allowed vlan 10 untagged
+  switchport general allowed vlan 40,42,50,100 tagged
+  switchport pvid 10
   no switchport general allowed vlan 1
   
 #
