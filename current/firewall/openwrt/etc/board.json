@@ -1,28 +1,29 @@
 {
 	"model": {
-		"id": "hp-elite-desk-800-g3-sff",
-		"name": "HP EliteDesk 800 G3 SFF"
+		"id": "openwrt-firewall",
+		"name": "openwrt-firewall"
 	},
 	"network": {
 		"wan": {
-			"device": "eth0",
-			"protocol": "pppoe"
+			"protocol": "dhcp",
+			"device": "eth0"
+		},
+		"dmz": {
+			"protocol": "static",
+			"ports": [
+				"eth6"
+			]
 		},
 		"lan": {
+			"protocol": "static",
 			"ports": [
 				"eth1",
 				"eth2",
-				"eth3",
 				"eth4",
-				"eth5"
-			],
-			"protocol": "static"
-		},
-		"dmz": {
-			"ports": [
-				"eth6"
-			],
-			"protocol": "static"
+				"eth5",
+				"eth6",
+				"eth7"
+			]
 		}
 	}
 }

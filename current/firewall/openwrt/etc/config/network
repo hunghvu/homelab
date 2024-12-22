@@ -14,6 +14,10 @@ config device
 	option bridge_empty '1'
 	list ports 'eth1'
 	list ports 'eth2'
+	list ports 'eth4'
+	list ports 'eth5'
+	list ports 'eth6'
+	list ports 'eth7'
 
 config interface 'wan'
 	option proto 'dhcp'
@@ -24,13 +28,13 @@ config bridge-vlan
 	option device 'br-lan'
 	option vlan '10'
 	list ports 'eth1:u*'
-	list ports 'eth2:u*'
+	list ports 'eth7:u*'
 
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '100'
 	list ports 'eth1:t'
-	list ports 'eth2:t'
+	list ports 'eth7:t'
 
 config interface 'iot'
 	option proto 'static'
@@ -49,7 +53,11 @@ config bridge-vlan
 	option device 'br-lan'
 	option vlan '50'
 	list ports 'eth1:t'
-	list ports 'eth2:t'
+	list ports 'eth2:u*'
+	list ports 'eth4:u*'
+	list ports 'eth5:u*'
+	list ports 'eth6:u*'
+	list ports 'eth7:t'
 
 config interface 'private'
 	option proto 'static'
@@ -62,7 +70,7 @@ config bridge-vlan
 	option device 'br-lan'
 	option vlan '40'
 	list ports 'eth1:t'
-	list ports 'eth2:t'
+	list ports 'eth7:t'
 
 config interface 'lab_mngt'
 	option proto 'static'
@@ -75,7 +83,7 @@ config bridge-vlan
 	option device 'br-lan'
 	option vlan '42'
 	list ports 'eth1:t'
-	list ports 'eth2:t'
+	list ports 'eth7:t'
 
 config interface 'lab_prod'
 	option proto 'static'
@@ -100,6 +108,7 @@ config device
 config device
 	option type 'bridge'
 	option name 'br-dmz'
+	option bridge_empty '1'
 	list ports 'eth3'
 
 config bridge-vlan
