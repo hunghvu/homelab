@@ -91,7 +91,7 @@ config host
 config host
 	option name 'truenas'
 	option ip '10.10.50.166'
-	option mac 'C6:00:86:E8:5B:4F'
+	list mac 'A8:A1:59:7A:7F:B4'
 
 config host
 	option name 'KL135'
@@ -157,6 +157,7 @@ config dhcp 'dmz_mngt'
 	option ra 'server'
 	option dhcpv6 'server'
 	list dhcp_option '6,1.1.1.2,9.9.9.9'
+	option force '1'
 
 config dhcp 'dmz_prod'
 	option interface 'dmz_prod'
@@ -166,6 +167,7 @@ config dhcp 'dmz_prod'
 	option ra 'server'
 	option dhcpv6 'server'
 	list dhcp_option '6,1.1.1.2,9.9.9.9'
+	option force '1'
 
 config host
 	option name 'hpe-1920-24g'
@@ -201,3 +203,48 @@ config host
 	option name 'apollo-air-1-1ECAA8'
 	option ip '10.10.100.115'
 	option mac '34:B7:DA:1E:CA:A8'
+
+config host
+	option name 'wiz_6c0966'
+	option ip '10.10.100.206'
+	option mac 'CC:40:85:6C:09:66'
+
+config host
+	option name 'wiz_6e664a'
+	option ip '10.10.100.145'
+	option mac 'CC:40:85:6E:66:4A'
+
+config host
+	option name 'wiz_6e5440'
+	option ip '10.10.100.153'
+	option mac 'CC:40:85:6E:54:40'
+
+config host
+	option name 'wiz_6e57ce'
+	option ip '10.10.100.142'
+	option mac 'CC:40:85:6E:57:CE'
+
+config host
+	option name 'wiz_6e53ee'
+	option ip '10.10.100.128'
+	option mac 'CC:40:85:6E:53:EE'
+
+config host
+	option name 'wiz_6e5522'
+	option ip '10.10.100.172'
+	option mac 'CC:40:85:6E:55:22'
+
+config host
+	option name 'wiz_6e557e'
+	option ip '10.10.100.114'
+	option mac 'CC:40:85:6E:55:7E'
+
+config host
+	option name 'wiz_6e18cc'
+	option ip '10.10.100.203'
+	option mac 'CC:40:85:6E:18:CC'
+
+config host
+	option name 'wiz_688fa8'
+	option ip '10.10.100.170'
+	list mac 'D8:A0:11:68:8F:A8'

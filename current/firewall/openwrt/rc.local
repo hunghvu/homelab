@@ -1,53 +1,26 @@
-# Currently is not used in 23.05.4 due to partition resize issue
-# https://forum.openwrt.org/t/openwrt-23-05-4-service-release/204514/48
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
 # Configure startup scripts
-cat << "EOF" > /etc/uci-defaults/70-rootpt-resize
-if [ ! -e /etc/rootpt-resize ] \
-&& type parted > /dev/null \
-&& lock -n /var/lock/root-resize
-then
-ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e \
-'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
-ROOT_DISK="/dev/$(basename "${ROOT_BLK%/*}")"
-ROOT_PART="${ROOT_BLK##*[^0-9]}"
-parted -f -s "${ROOT_DISK}" \
-resizepart "${ROOT_PART}" 100%
-mount_root done
-touch /etc/rootpt-resize
-reboot
-fi
-exit 1
-EOF
-cat << "EOF" > /etc/uci-defaults/80-rootfs-resize
-if [ ! -e /etc/rootfs-resize ] \
-&& [ -e /etc/rootpt-resize ] \
-&& type losetup > /dev/null \
-&& type resize2fs > /dev/null \
-&& lock -n /var/lock/root-resize
-then
-ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e \
-'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
-ROOT_DEV="/dev/${ROOT_BLK##*/}"
-LOOP_DEV="$(awk -e '$5=="/overlay"{print $9}' \
-/proc/self/mountinfo)"
-if [ -z "${LOOP_DEV}" ]
-then
-LOOP_DEV="$(losetup -f)"
-losetup "${LOOP_DEV}" "${ROOT_DEV}"
-fi
-resize2fs -f "${LOOP_DEV}"
-mount_root done
-touch /etc/rootfs-resize
-reboot
-fi
-exit 1
-EOF
-cat << "EOF" >> /etc/sysupgrade.conf
-/etc/uci-defaults/70-rootpt-resize
-/etc/uci-defaults/80-rootfs-resize
-EOF
+
+# https://bbs.archlinux.org/viewtopic.php?id=214810
+# https://wiki.archlinux.org/title/Power_management#SATA_Active_Link_Power_Management
+powertop --auto-tune
+
+# Disable ASPM for Realtek NIC, otherwise, they won't wake up
+# from deep sleep when connected, leading to a server restart
+# to reset the connection.
+# Low power BIOS profile, with some devices disabled (e.g., Intel GNA, SATA controller)
+echo 'on' > '/sys/bus/pci/devices/0000:04:00.0/power/control';
+echo 'on' > '/sys/bus/pci/devices/0000:07:00.0/power/control';
+echo 'on' > '/sys/bus/pci/devices/0000:08:00.0/power/control';
+echo 'on' > '/sys/bus/pci/devices/0000:09:00.0/power/control';
+echo 'disabled' > '/sys/class/net/eth0/device/power/wakeup';
+
+# No disabled devices
+# echo 'on' > '/sys/bus/pci/devices/0000:0b:00.0/power/control';
+# echo 'on' > '/sys/bus/pci/devices/0000:05:00.0/power/control';
+
+echo 'on' > '/sys/bus/pci/devices/0000:0a:00.0/power/control';
 
 exit 0
