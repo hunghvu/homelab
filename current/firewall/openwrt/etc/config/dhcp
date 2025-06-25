@@ -248,3 +248,8 @@ config host
 	option name 'wiz_688fa8'
 	option ip '10.10.100.170'
 	list mac 'D8:A0:11:68:8F:A8'
+
+config host
+	option name 'mx4200-v1'
+	option ip '10.10.10.240'
+	list mac 'C4:41:1E:F9:24:8C'

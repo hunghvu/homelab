@@ -5,22 +5,20 @@
 	},
 	"network": {
 		"wan": {
-			"protocol": "dhcp",
-			"device": "eth0"
+			"device": "eth5",
+			"protocol": "dhcp"
 		},
 		"dmz": {
-			"protocol": "static",
-			"ports": [
-				"eth6"
-			]
+			"device": "eth0",
+			"protocol": "static"
 		},
 		"lan": {
 			"protocol": "static",
 			"ports": [
 				"eth1",
 				"eth2",
+				"eth3",
 				"eth4",
-				"eth5",
 				"eth6",
 				"eth7"
 			]

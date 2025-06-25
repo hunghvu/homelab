@@ -16,11 +16,13 @@ echo 'on' > '/sys/bus/pci/devices/0000:07:00.0/power/control';
 echo 'on' > '/sys/bus/pci/devices/0000:08:00.0/power/control';
 echo 'on' > '/sys/bus/pci/devices/0000:09:00.0/power/control';
 echo 'disabled' > '/sys/class/net/eth0/device/power/wakeup';
+echo 'on' > '/sys/bus/pci/devices/0000:0a:00.0/power/control';
 
 # No disabled devices
 # echo 'on' > '/sys/bus/pci/devices/0000:0b:00.0/power/control';
 # echo 'on' > '/sys/bus/pci/devices/0000:05:00.0/power/control';
 
-echo 'on' > '/sys/bus/pci/devices/0000:0a:00.0/power/control';
+# Update qosmate on startup: https://github.com/hudra0/qosmate
+/etc/init.d/qosmate update
 
 exit 0

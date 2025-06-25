@@ -207,3 +207,57 @@ config forwarding
 config forwarding
 	option src 'iot'
 	option dest 'wan'
+
+config rule
+	option name 'T-Mobile Wifi Calling - IPsec - IKE : Authentication [WFC 2.0]'
+	option src '*'
+	option src_port '500'
+	option dest '*'
+	option dest_port '500'
+	option target 'ACCEPT'
+	list dest_ip '208.54.0.0/16'
+	list proto 'udp'
+
+config rule
+	option name 'T-Mobile Wifi Calling - IPsec - NAT traversal : Encrypted voice traffic [WFC  2.0]'
+	option src '*'
+	option dest '*'
+	option dest_port '4500'
+	option target 'ACCEPT'
+	list dest_ip '208.54.0.0/16'
+	list proto 'udp'
+	option src_port '4500'
+
+config rule
+	option name 'T-Mobile Wifi Calling -  	SIP/TLS : Encrypted SIP [WFC 1.0]'
+	option src '*'
+	option dest '*'
+	option dest_port '5061'
+	option target 'ACCEPT'
+	list dest_ip '208.54.0.0/16'
+	option src_port '5061'
+	list proto 'tcp'
+	list proto 'udp'
+
+config rule
+	option name 'T-Mobile Wifi Calling - HTTPS : Used for handset authentication [WFC 1.0]'
+	option src '*'
+	option dest '*'
+	option dest_port '443'
+	option target 'ACCEPT'
+	option src_port '443'
+	list proto 'tcp'
+	list dest_ip '66.94.0.0/19'
+
+config rule
+	option name 'T-Mobile Wifi Calling - IMAP/SSL : Visual Voicemail [WFC 1.0]'
+	option src '*'
+	option dest '*'
+	option dest_port '993'
+	option target 'ACCEPT'
+	option src_port '993'
+	list proto 'tcp'
+	list dest_ip '66.94.0.0/19'
+
+# Wireguard config is removed from this section due to its sensitivity.
+# Refer to local backup for more information.

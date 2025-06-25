@@ -14,8 +14,8 @@ config device
 	option bridge_empty '1'
 	list ports 'eth1'
 	list ports 'eth2'
+	list ports 'eth3'
 	list ports 'eth4'
-	list ports 'eth5'
 	list ports 'eth6'
 	list ports 'eth7'
 
@@ -23,18 +23,21 @@ config interface 'wan'
 	option proto 'dhcp'
 	option device 'br-wan.201'
 	option hostname '*'
+	option peerdns '0'
+	list dns '1.1.1.1'
+	list dns '1.0.0.1'
 
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '10'
-	list ports 'eth1:u*'
-	list ports 'eth7:u*'
+	list ports 'eth4:u*'
+	list ports 'eth6:u*'
 
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '100'
-	list ports 'eth1:t'
-	list ports 'eth7:t'
+	list ports 'eth4:t'
+	list ports 'eth6:t'
 
 config interface 'iot'
 	option proto 'static'
@@ -52,12 +55,12 @@ config interface 'wan6'
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '50'
-	list ports 'eth1:t'
+	list ports 'eth1:u*'
 	list ports 'eth2:u*'
-	list ports 'eth4:u*'
-	list ports 'eth5:u*'
-	list ports 'eth6:u*'
-	list ports 'eth7:t'
+	list ports 'eth3:u*'
+	list ports 'eth4:t'
+	list ports 'eth6:t'
+	list ports 'eth7:u*'
 
 config interface 'private'
 	option proto 'static'
@@ -69,8 +72,8 @@ config interface 'private'
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '40'
-	list ports 'eth1:t'
-	list ports 'eth7:t'
+	list ports 'eth4:t'
+	list ports 'eth6:t'
 
 config interface 'lab_mngt'
 	option proto 'static'
@@ -82,8 +85,8 @@ config interface 'lab_mngt'
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '42'
-	list ports 'eth1:t'
-	list ports 'eth7:t'
+	list ports 'eth4:t'
+	list ports 'eth6:t'
 
 config interface 'lab_prod'
 	option proto 'static'
@@ -103,23 +106,23 @@ config device
 	option type 'bridge'
 	option name 'br-wan'
 	option bridge_empty '1'
-	list ports 'eth0'
+	list ports 'eth5'
 
 config device
 	option type 'bridge'
 	option name 'br-dmz'
 	option bridge_empty '1'
-	list ports 'eth3'
+	list ports 'eth0'
 
 config bridge-vlan
 	option device 'br-dmz'
 	option vlan '200'
-	list ports 'eth3:u*'
+	list ports 'eth0:t'
 
 config bridge-vlan
 	option device 'br-dmz'
 	option vlan '210'
-	list ports 'eth3:t'
+	list ports 'eth0:t*'
 
 config interface 'dmz_mngt'
 	option proto 'static'
@@ -138,4 +141,7 @@ config interface 'dmz_prod'
 config bridge-vlan
 	option device 'br-wan'
 	option vlan '201'
-	list ports 'eth0:t'
+	list ports 'eth5:t*'
+
+# Wireguard config is removed from this section due to its sensitivity.
+# Refer to local backup for more information.
