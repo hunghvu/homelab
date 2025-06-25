@@ -46,20 +46,17 @@ exit 0
     - **luci-proto-ipv6**: GUI for IpV6 config
     - **kmod-usb-net-rtl8152**: For Realtek USB NIC
     - **kmod-usb3**: For USB 3.x devices, such as USB NIC
-    - **luci-app-sqm**: GUI and dependencies for SQM
     - **kmod-i40e**: Intel X710-DA2 driver
-    - **kmod-mlx4-core**: Mellanox ConnectX-3 Pro (MCX314A-BCCT) driver
     - **kmod-igc**: Intel i22x series
     - **ethtool**: To check information of a NIC
     - **pciutils**: Mostly for `lspci`
     - **ip**: Mostly for `ip addr`, to check all attached interface, physical and virtual
-    - **parted**: To resize root partition and file system
-    - **losetup**: To resize root partition and file system
-    - **resize2fs**: To resize root partition and file system
+    - **luci-app-attendedsysupgrade**: GUI and dependencies for inplace system upgrade. Otherwise, an image rebuild and disk format are required. 
     - **luci-app-https-dns-proxy**: Enable DNS over HTTPS
       - Becareful when restore backup that has `https-dns-proxy` config, to a system (usually fresh installed), that does not have the package. Because an existing backup modifies DNS config in away which requires the existence of `https-dns-proxy`, so without the package, all DNS queries will fail, and hence no Internet.
     - **luci-app-adblock-fast**: Lightweight DNSBL solution that supports both IPv4, IPv6 and works in conjunction with `luci-app-https-dns-proxy`. [The document is available here](https://docs.openwrt.melmac.net/adblock-fast/)
     - **powertop**: To monitor idle state of the system, `powertop --auto-tune` is a fast way to enable all ASPM capabilities.
+    - **qosmate**: Refer to [qosmate Github](https://github.com/hudra0/qosmate). This package is outside of OpenWRT package repository, so it requires a specific installation instruction.
     - The following packages are optional dependencies to accelerate `adblock-fast`:
 
       - **gawk**
@@ -77,6 +74,11 @@ exit 0
   
   - The following packages are optional:
 
+    - **parted**: To resize root partition and file system (may cause system brick inbetween `attendedsysupgrade`)
+    - **losetup**: To resize root partition and file system (may cause system brick inbetween `attendedsysupgrade`)
+    - **resize2fs**: To resize root partition and file system (may cause system brick inbetween `attendedsysupgrade`)
+    - **luci-app-sqm**: GUI and dependencies for SQM. A classic alternative to `qosmate`.
+    - **kmod-mlx4-core**: Mellanox ConnectX-3 Pro (MCX314A-BCCT) driver
     - **zram-swap**: Enable swap for the OS. However, this is mostly for embedded devices (but with trade off like reduce flash lifetime, increasing CPU usage, etc.) For x86, RAM is usually overkill so swap is not necessary
     - **kmod-lib-lz4**: LZ4 compression algorithm for swap
     - **kmod-lib-zstd**: ZSTD compression algorithm for swap
@@ -84,10 +86,10 @@ exit 0
       - Customization of compression algorithm is available at `/etc/config/system`, but it seems future version of OpenWRT will expose the configuration via LuCI (source: https://github.com/openwrt/openwrt/issues/14441#issuecomment-1973885215)
 
 
- - For convenience, below is the list of packages for the firmmware selector (Generic x86/64)
+- For convenience, below is the list of packages for the firmmware selector (Generic x86/64)
 
 ```
-base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools grub2-bios-setup kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-mbedtls logd luci mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd 6rd luci-proto-ipv6 kmod-usb-net-rtl8152 kmod-usb3 intel-microcode amd64-microcode luci-app-sqm kmod-i40e ethtool pciutils ip parted losetup resize2fs luci-app-https-dns-proxy luci-app-adblock-fast gawk grep sed coreutils-sort zram-swap kmod-lib-lz4 kmod-lib-zstd kmod-igc
+base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools grub2-bios-setup kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-mbedtls logd luci mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd amd64-microcode intel-microcode 6rd luci-proto-ipv6 kmod-usb-net-rtl8152 kmod-usb3 kmod-i40e ethtool pciutils ip luci-app-attendedsysupgrade luci-app-https-dns-proxy luci-app-adblock-fast gawk grep sed coreutils-sort
 ```
 
 #### About ASPM
