@@ -72,7 +72,6 @@ config interface 'private'
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '40'
-	list ports 'eth4:t'
 	list ports 'eth6:t'
 
 config interface 'lab_mngt'
@@ -85,7 +84,6 @@ config interface 'lab_mngt'
 config bridge-vlan
 	option device 'br-lan'
 	option vlan '42'
-	list ports 'eth4:t'
 	list ports 'eth6:t'
 
 config interface 'lab_prod'
@@ -117,12 +115,12 @@ config device
 config bridge-vlan
 	option device 'br-dmz'
 	option vlan '200'
-	list ports 'eth0:t'
+	list ports 'eth0:u*'
 
 config bridge-vlan
 	option device 'br-dmz'
 	option vlan '210'
-	list ports 'eth0:t*'
+	list ports 'eth0:t'
 
 config interface 'dmz_mngt'
 	option proto 'static'

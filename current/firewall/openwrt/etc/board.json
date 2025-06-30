@@ -5,16 +5,15 @@
 	},
 	"network": {
 		"wan": {
-			"device": "eth5",
-			"protocol": "dhcp"
-		},
-		"dmz": {
-			"device": "eth0",
-			"protocol": "static"
+			"protocol": "dhcp",
+			"ports": [
+				"eth5"
+			]
 		},
 		"lan": {
 			"protocol": "static",
 			"ports": [
+				"eth0",
 				"eth1",
 				"eth2",
 				"eth3",
